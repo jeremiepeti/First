@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .button {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .button-2 {
+            align-self: stretch;
+            border-radius: 80px; /* Rounded corners */
+            background-color: rgba(44, 44, 44, 1); /* Dark background */
+            color: white; /* Text color */
+            padding: 12px 20px; /* Inner padding */
+            border: 1px solid rgba(44, 44, 44, 1); /* Border color */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition-duration: 0.4s; /* Smooth transition for hover effects */
+            font-size: 18px; /* Font size for buttons */
+        }
+
+        .button-2:hover {
+            background-color: #04AA6D; /* Change background on hover */
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Rock, Paper, Scissors</h1>
+
+    <div class="button"><div class="button-2" id="rock">Rock</div></div>
+    <div class="button"><div class="button-2" id="paper">Paper</div></div>
+    <div class="button"><div class="button-2" id="scissors">Scissors</div></div>
+
+    <div id="result"></div>
+
+    <script>
+        // JavaScript goes here
+        const choices = ['rock', 'paper', 'scissors'];
+
+        function getComputerChoice() {
+            const randomIndex = Math.floor(Math.random() * 3);
+            return choices[randomIndex];
+        }
+
+        function getResult(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                return "It's a tie!";
+            }
+            if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                return "You win!";
+            } else {
+                return "You lose!";
+            }
+        }
+
+        // Event listeners for buttons
+        document.getElementById('rock').addEventListener('click', () => {
+            const computerChoice = getComputerChoice();
+            const result = getResult('rock', computerChoice);
+            document.getElementById('result').innerText = `Computer chose ${computerChoice}. ${result}`;
+        });
+
+        document.getElementById('paper').addEventListener('click', () => {
+            const computerChoice = getComputerChoice();
+            const result = getResult('paper', computerChoice);
+            document.getElementById('result').innerText = `Computer chose ${computerChoice}. ${result}`;
+        });
+
+        document.getElementById('scissors').addEventListener('click', () => {
+            const computerChoice = getComputerChoice();
+            const result = getResult('scissors', computerChoice);
+            document.getElementById('result').innerText = `Computer chose ${computerChoice}. ${result}`;
+        });
+    </script>
+
+</body>
+</html>
