@@ -61,6 +61,7 @@
 
     <script>
         // JavaScript goes here
+        let userScore = 0;
         const choices = ['rock', 'paper', 'scissors'];
 
         function getComputerChoice() {
@@ -76,11 +77,23 @@
                 (playerChoice === 'rock' && computerChoice === 'scissors') ||
                 (playerChoice === 'paper' && computerChoice === 'rock') ||
                 (playerChoice === 'scissors' && computerChoice === 'paper')
-            ) {
-                return "You win!";
+            ) { userScore++;
+                return "You win this round!";
             } else {
                 return "You lose!";
             }
+        }
+        
+        function updateScoreDisplay() {
+            const scoreElement = document.getElementById('score');
+            scoreElement.textContent = `Score: ${userScore}`;
+        }
+
+        function handleUserChoice(userChoice) {
+            const computerChoice = getComputerChoice();
+            const resultMessage = playRound(userChoice, computerChoice);
+            alert(resultMessage);
+            updateScoreDisplay();
         }
 
         // Event listeners for buttons
